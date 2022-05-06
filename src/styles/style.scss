@@ -7,6 +7,10 @@
     font-family: 'Rubik', sans-serif;
 }
 
+html, body, #root {
+    height: 100%;
+}
+
 .blue-container {
     background-image: url('../assets/pattern-bg.png');
     background-size: cover;
@@ -44,13 +48,15 @@
             flex-direction: column;
             justify-content: space-evenly;
         }
-        background-color: rgb(255, 141, 141);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        background-color: white;
         text-align: center;
         border-radius: 15px;
-        width: calc(100% - 10rem);
+        width: 75%;
         min-width: 318.667px;
         height: 85%;
         position: absolute;
+        z-index: 401;
         left: 50%;
         bottom: -40%;
         transform: translateX(-50%);
@@ -62,6 +68,21 @@
             color: hsl(0, 0%, 17%);
             font-size: 1.2rem;
         }
+    }
+}
+
+#map {
+    height: calc(100% - 20rem);
+}
+
+@media (min-width: 700px) {
+    ul {
+        flex-direction: row !important;
+        align-items: center;
+    }
+    .info-container {
+        height: 55% !important;
+        bottom: -30% !important;
     }
 }
 

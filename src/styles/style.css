@@ -7,6 +7,10 @@
   font-family: 'Rubik', sans-serif;
 }
 
+html, body, #root {
+  height: 100%;
+}
+
 .blue-container {
   background-image: url("../assets/pattern-bg.png");
   background-size: cover;
@@ -48,13 +52,16 @@
 }
 
 .blue-container .info-container {
-  background-color: #ff8d8d;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  background-color: white;
   text-align: center;
   border-radius: 15px;
-  width: calc(100% - 10rem);
+  width: 75%;
   min-width: 318.667px;
   height: 85%;
   position: absolute;
+  z-index: 401;
   left: 50%;
   bottom: -40%;
   -webkit-transform: translateX(-50%);
@@ -84,5 +91,25 @@
 .blue-container .info-container strong {
   color: #2b2b2b;
   font-size: 1.2rem;
+}
+
+#map {
+  height: calc(100% - 20rem);
+}
+
+@media (min-width: 700px) {
+  ul {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .info-container {
+    height: 55% !important;
+    bottom: -30% !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
