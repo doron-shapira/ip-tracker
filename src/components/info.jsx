@@ -2,7 +2,7 @@ export default function Info() {
     return (
         <div className="info-container">
             <ul>
-                <li id="ip-address">
+                <li id="ip">
                     <p>IP ADDRESS</p>
                     <strong>192.212.174.101</strong>
                 </li>
