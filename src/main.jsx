@@ -21,11 +21,11 @@ function App() {
   const handleSearch = input => setSearchedTerm(input);
 
   useEffect(() => {
-    fetch(`http://ip-api.com/json/${searchedTerm}`)
+    fetch(`https://ip-api.com/json/${searchedTerm}`)
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
-          fetch(`http://ipwho.is/${data.query}`)
+          fetch(`https://ipwho.is/${data.query}`)
             .then(response => response.json())
             .then(data => {
               setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: data.timezone.utc, isp: data.connection.isp});
