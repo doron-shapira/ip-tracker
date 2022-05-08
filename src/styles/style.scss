@@ -38,6 +38,10 @@ html, body, #root {
             padding: 1rem 1.5rem;
             border-radius: 0 15px 15px 0;
             cursor: pointer;
+            transition: background-color .1s ease-in-out;
+        }
+        button:hover {
+            background-color: #3f3f3f;
         }
     }
     .info-container {
@@ -82,7 +86,7 @@ html, body, #root {
     }
     .info-container {
         height: 55% !important;
-        bottom: -30% !important;
+        bottom: -25% !important;
     }
 }
 

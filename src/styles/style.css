@@ -49,6 +49,12 @@ html, body, #root {
   padding: 1rem 1.5rem;
   border-radius: 0 15px 15px 0;
   cursor: pointer;
+  -webkit-transition: background-color .1s ease-in-out;
+  transition: background-color .1s ease-in-out;
+}
+
+.blue-container .input-container button:hover {
+  background-color: #3f3f3f;
 }
 
 .blue-container .info-container {
@@ -109,7 +115,7 @@ html, body, #root {
   }
   .info-container {
     height: 55% !important;
-    bottom: -30% !important;
+    bottom: -25% !important;
   }
 }
 /*# sourceMappingURL=style.css.map */

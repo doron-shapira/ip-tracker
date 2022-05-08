@@ -1,4 +1,12 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import L from 'leaflet';
+import marker from '../assets/icon-location.svg';
+
+const locationIcon = new L.icon({
+    iconUrl: marker,
+    iconSize: [36, 46],
+    iconAnchor: [18, 46]
+  });
 
 export default function Map({ coords }) {
     return (
@@ -7,9 +15,7 @@ export default function Map({ coords }) {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[coords.lat, coords.long]}>
-                <Popup>A pretty CSS3 popup. <br /> Easily customizable.</Popup>
-            </Marker>
+            <Marker position={[coords.lat, coords.long]} icon={locationIcon} />
         </MapContainer>
     );
 }
