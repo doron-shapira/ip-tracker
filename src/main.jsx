@@ -20,21 +20,6 @@ function App() {
   const [coords, setCoords] = useState({ lat: 0, long: 0 });
   const handleSearch = input => setSearchedTerm(input);
 
-  // useEffect(() => {
-  //   fetch(`http://ipwho.is/${searchedTerm}`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (data.success) {
-  //         setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: data.timezone.utc, isp: data.connection.isp});
-  //         setCoords({...coords, lat: data.latitude, long: data.longitude});
-  //       }
-  //       else {
-  //         document.querySelector('input').setCustomValidity('Please enter a valid IP or Domain');
-  //         document.querySelector('input').reportValidity();
-  //       }
-  //     })
-  // }, [searchedTerm]);
-
   useEffect(() => {
     fetch(`http://ip-api.com/json/${searchedTerm}`)
       .then(response => response.json())
