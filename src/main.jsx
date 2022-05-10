@@ -30,7 +30,7 @@ function App() {
     const response = await fetch(`https://ipwho.is/${ip}`);
     const data = await response.json();
     if (data.success) {
-      setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: data.timezone.utc, isp: data.connection.isp});
+      setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: 'UTC '+data.timezone.utc, isp: data.connection.isp});
       setCoords({...coords, lat: data.latitude, long: data.longitude});
     } 
     else

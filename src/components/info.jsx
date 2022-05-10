@@ -12,7 +12,7 @@ export default function Info({ info }) {
                 </li>
                 <li id="timezone">
                     <p>TIMEZONE</p>
-                    <strong>UTC {info.timezone}</strong>
+                    <strong>{info.timezone}</strong>
                 </li>
                 <li id="isp">
                     <p>ISP</p>
