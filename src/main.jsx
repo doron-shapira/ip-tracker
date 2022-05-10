@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
 function App() {
-  const [searchedTerm, setSearchedTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [info, setInfo] = useState({
     ip: '',
     location: '',
@@ -18,28 +18,39 @@ function App() {
     isp: ''
   });
   const [coords, setCoords] = useState({ lat: 0, long: 0 });
-  const handleSearch = input => setSearchedTerm(input);
+  const handleSearch = input => setSearchTerm(input);
+  const containsAnyLetter = str => /[a-zA-Z]/.test(str);
+
+  const warnValidIpOrDomain = () => {
+    document.querySelector('input').setCustomValidity('Please enter a valid IP or Domain');
+    document.querySelector('input').reportValidity();
+  }
+
+  const fetchSetInfoCoords = async ip => {
+    const response = await fetch(`https://ipwho.is/${ip}`);
+    const data = await response.json();
+    if (data.success) {
+      setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: data.timezone.utc, isp: data.connection.isp});
+      setCoords({...coords, lat: data.latitude, long: data.longitude});
+    } 
+    else
+      warnValidIpOrDomain();
+  }
 
   useEffect(() => {
-    fetch(`http://ip-api.com/json/${searchedTerm}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          fetch(`https://ipwho.is/${data.query}`)
-            .then(response => response.json())
-            .then(data => {
-              setInfo({...info, ip: data.ip, location: data.city+', '+data.country, timezone: data.timezone.utc, isp: data.connection.isp});
-              setCoords({...coords, lat: data.latitude, long: data.longitude});
-            })
-            .catch(err => alert(err));
-        }
-        else {
-          document.querySelector('input').setCustomValidity('Please enter a valid IP or Domain');
-          document.querySelector('input').reportValidity();
-        }
-      })
-      .catch(err => alert(err+'\nAdblock may be interfering with API fetch'));
-  }, [searchedTerm]);
+    if (containsAnyLetter(searchTerm)) {
+      fetch(`https://dns.google/resolve?name=${searchTerm}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.hasOwnProperty('Answer'))
+            fetchSetInfoCoords(data.Answer[0].data)
+          else
+            warnValidIpOrDomain();
+        })
+    }
+    else
+      fetchSetInfoCoords(searchTerm);
+  }, [searchTerm])
 
   return (
     <>
